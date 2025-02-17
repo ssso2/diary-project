@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+.wrapper {
+    @apply max-w-[1280px] mx-auto mt-32 flex items-center px-10 bg-white;
+}
+.wrap {
+    @apply max-w-[1200px] w-full bg-blue-500;
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #transparent;
+        --background: #121212;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
