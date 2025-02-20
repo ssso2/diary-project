@@ -7,10 +7,10 @@
     --foreground: #171717;
 }
 .wrapper {
-    @apply max-w-[1280px] mx-auto mt-32 flex items-center px-10 bg-white;
+    @apply max-w-[1280px] mx-auto mt-32 flex px-10 bg-white;
 }
 .wrap {
-    @apply max-w-[1200px] w-full bg-blue-500;
+    @apply max-w-[1200px] w-full bg-blue-500 flex justify-center;
 }
 @media (prefers-color-scheme: dark) {
     :root {
