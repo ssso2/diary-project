@@ -2,7 +2,7 @@ import "./globals.css";
 import Link from "next/link";
 import Image from "next/image";
 
-import Header from "../component/Header";
+import Header from "@/component/Header";
 import Footer from "@/component/Footer";
 
 export default function Home() {
@@ -12,8 +12,8 @@ export default function Home() {
                 <Header />
                 <div className="w-full bg-green-400 relative">
                     {/* <Image
-                            src="/sub/main6.svg"
-                            alt="mainimg"
+                            src="/main/main1"
+                            alt="메인이미지"
                             className="w-full"
                         /> */}
                     <img src="/main/main1.svg" alt="메인이미지" height={1080} />
@@ -50,7 +50,7 @@ export default function Home() {
                 <div className="wrap">
                     <main>
                         <div>
-                            <div className="font-medium text-center m-40">
+                            <div className="font-medium text-center m-24">
                                 <p>
                                     Lorem ipsum dolor sit amet consectetur
                                     adipisicing elit. Quae magnam vero,{" "}

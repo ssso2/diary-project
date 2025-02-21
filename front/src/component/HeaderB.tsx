@@ -20,21 +20,17 @@ export default function Header({ className }: { className: string }) {
         };
     }, []);
     return (
-        <div
-            className={`fixed w-full left-0 right-0 h-20 bg-transparent z-50 px-20 py-7 ${
-                headerbg ? "bg-black" : ""
-            } ${className}`}
-        >
+        <div className="fixed w-full left-0 right-0 top-0 h-20 bg-white z-50 px-20 py-7">
             <nav className=" flex justify-between text-xl font-medium">
                 <Link href="/">
                     <Image
-                        src="/main/logo.svg"
+                        src="/main/logoB.svg"
                         alt="로고"
                         width={68}
                         height={24}
                     />
                 </Link>
-                <Link href="/login" className="font-medium text-xl">
+                <Link href="/login" className="font-medium text-xl text-black">
                     로그인 / 회원가입
                 </Link>
             </nav>
