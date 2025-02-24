@@ -22,7 +22,7 @@ export default function Header({ className }: { className: string }) {
     return (
         <div
             className={`fixed w-full left-0 right-0 h-20 bg-transparent z-50 px-20 py-7 ${
-                headerbg ? "bg-black" : ""
+                headerbg ? "bg-red-200" : ""
             } ${className}`}
         >
             <nav className=" flex justify-between text-xl font-medium">

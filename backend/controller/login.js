@@ -11,7 +11,7 @@ router.post("/", async (req, res) => {
             "select * from member where user_id = ? and pw = ?",
             [email, pw]
         );
-
+        console.log("트라이:", req.body);
         if (user.length === 0) {
             return res
                 .status(404)
@@ -21,8 +21,10 @@ router.post("/", async (req, res) => {
             name: user[0].name,
         });
     } catch (error) {
-        console.error("로그인오류:", error);
-        res.status(500).json({ message: "로그인에 실패했습니다." });
+        console.error("서버로그인오류:", error);
+        res.status(500).json({
+            error: "서버 오류가 발생했습니다. 잠시 후 다시 시도해주세요.",
+        });
     }
 });
 module.exports = router;
