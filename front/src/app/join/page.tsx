@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
+import AgreeCheck from "@/component/AgreeCheck";
 
 // import { Link, useNavigate } from "react-router-dom";
 
@@ -61,7 +62,7 @@ export default function join() {
                                 <button
                                     type="button"
                                     onClick={requestcode}
-                                    className="text-white bg-gray3 rounded-lg py-3 pl-5 w-full font-semibold"
+                                    className="text-white bg-gray3 rounded-lg py-3 w-full font-semibold"
                                 >
                                     이메일 인증
                                 </button>
@@ -80,48 +81,7 @@ export default function join() {
                                     className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full"
                                 />
                             </form>
-                            <div className="mt-8">
-                                <div className="h-12 bg-gray1 flex items-center">
-                                    <input
-                                        type="checkbox"
-                                        id="all"
-                                        className="rounded-full"
-                                    />
-                                    <label
-                                        htmlFor="all"
-                                        className="text-black font-medium cursor-pointer"
-                                    >
-                                        전체 동의하기
-                                    </label>{" "}
-                                </div>
-                                <div className="flex-col">
-                                    <div className="h-12 flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            id="servicechk"
-                                        />
-                                        <label
-                                            htmlFor="servicechk"
-                                            className="text-black font-medium cursor-pointer"
-                                        >
-                                            [필수] 서비스 이용약관 동의
-                                        </label>
-                                    </div>
-                                    <div className="h-12 flex items-center">
-                                        <input
-                                            type="checkbox"
-                                            id="privacychk"
-                                        />
-                                        <label
-                                            htmlFor="privacychk"
-                                            className="text-black font-medium cursor-pointer"
-                                        >
-                                            [필수] 개인정보 처리방침 동의
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-
+                            <AgreeCheck />
                             <button
                                 type="button"
                                 onClick={joingo}
