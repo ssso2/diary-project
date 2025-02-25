@@ -47,7 +47,8 @@ const loginRouter = require("./controller/login.js");
 app.use("/login", loginRouter);
 //회원가입 라우터
 const joinRouter = require("./controller/join.js");
-app.use("/emailcheck", joinRouter);
+app.use("/join", joinRouter);
+
 //영화드라마목록 라우터
 const listRouter = require("./controller/list.js");
 app.use("/list", listRouter);

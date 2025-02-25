@@ -7,34 +7,14 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import axios from "axios";
 import AgreeCheck from "@/component/AgreeCheck";
+import Email from "@/component/Email";
 
 // import { Link, useNavigate } from "react-router-dom";
 
 export default function join() {
     const router = useRouter();
     const URL = process.env.NEXT_PUBLIC_API_KEY;
-    const [email, setemail] = useState("");
-    // const code = () => {
-    //     return Math.random().toString(36).toUpperCase().slice(2, 8);
-    // };
-    // const bb = Math.random().toString(36).toUpperCase().slice(2, 8);
 
-    const requestcode = async () => {
-        try {
-            console.log("이메일오나", email);
-            const res = await axios.post(`${URL}/emailcheck`, {
-                email,
-            });
-            alert(
-                `이메일로 인증코드를 보냈습니다. ${res.data.message} 플러스 ${res.data.code}`
-            );
-            // navigate("emailjoin", { state: { email: email } });
-        } catch (error) {
-            console.log("에러메세지", error);
-            // console.error("에러 응답:", error.response);
-            // console.error("에러 요청:", error.request);
-        }
-    };
     const joingo = () => {
         alert("회원가입이 완료되었습니다.");
         router.push("/");
@@ -52,33 +32,30 @@ export default function join() {
                         </p>
                         <div className="w-full bg-red-400 mt-10">
                             <form>
-                                <p className="text-gray4">이메일</p>
-                                <input
-                                    type="email"
-                                    placeholder="예) scene@naver.com"
-                                    className="border-gray3 rounded-lg py-3 my-2 pl-5 w-full"
-                                    onChange={e => setemail(e.target.value)}
-                                />
-                                <button
-                                    type="button"
-                                    onClick={requestcode}
-                                    className="text-white bg-gray3 rounded-lg py-3 w-full font-semibold"
-                                >
-                                    이메일 인증
-                                </button>
-                                <p className="text-gray4 mt-4">비밀번호</p>
+                                <label for="name" className="text-gray4 mt-4">
+                                    이름
+                                </label>
                                 <input
                                     type="text"
+                                    id="name"
+                                    placeholder=" 예) 김기록"
+                                    required
+                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
+                                />
+                                <Email />
+                                <p className="text-gray4 mt-4">비밀번호</p>
+                                <input
+                                    type="password"
                                     placeholder="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
-                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full"
+                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
                                 />
                                 <p className="text-gray4  mt-4">
                                     비밀번호 확인
                                 </p>
                                 <input
-                                    type="text"
+                                    type="password"
                                     placeholder="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
-                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full"
+                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
                                 />
                             </form>
                             <AgreeCheck />

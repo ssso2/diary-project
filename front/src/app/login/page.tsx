@@ -55,10 +55,10 @@ export default function login() {
                 const message =
                     error.response.data?.error || "로그인에 실패했습니다.";
                 if (error.response) {
-                    //서버응답
+                    //서버요청받고응답보냈는데오류
                     alert(message);
                 } else if (error.request) {
-                    // 요청후서버응답없음
+                    //요청후서버응답없음
                     alert("서버 응답이 없습니다. 잠시 후 다시 시도해주세요.");
                 }
                 //네트워크문제
@@ -104,7 +104,7 @@ export default function login() {
                                         className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
                                     />
                                     {errors.email && (
-                                        <p className="text-[#FF0000] mt-2">
+                                        <p className="text-[#c59d9d] mt-2">
                                             {errors.email}
                                         </p>
                                     )}
