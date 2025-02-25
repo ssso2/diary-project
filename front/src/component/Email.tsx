@@ -69,6 +69,7 @@ export default function Email() {
             <input
                 type="email"
                 placeholder="예) scene@naver.com"
+                readOnly={codeVerify}
                 className="border-gray3 rounded-lg py-3 my-2 pl-5 w-full text-black"
                 onChange={emailchange}
             />
@@ -78,11 +79,11 @@ export default function Email() {
                 onClick={requestcode}
                 className={`text-white bg-gray3 rounded-lg py-3 w-full font-semibold ${
                     emailValid ? "bg-orange cursor-pointer" : "bg-gray3 "
-                }`}
+                } ${codeVerify && "hidden"}`}
             >
                 {codesend ? "재전송" : "이메일 인증"}
             </button>
-            {codesend && (
+            {codesend && !codeVerify && (
                 <div className="mt-4">
                     <div className="flex w-full gap-2">
                         <input
@@ -90,6 +91,7 @@ export default function Email() {
                             placeholder="인증번호 6자리 입력"
                             onChange={e => setcodeInput(e.target.value)}
                             maxLength={6}
+                            readOnly={codeVerify}
                             className="border-gray3 rounded-lg py-3 pl-5 flex-1 text-black"
                         />
                         <button
@@ -106,6 +108,9 @@ export default function Email() {
                         </button>
                     </div>
                 </div>
+            )}
+            {codeVerify && (
+                <p className="text-green-600">이메일 인증이 완료되었습니다.</p>
             )}
         </>
     );

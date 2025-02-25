@@ -25,11 +25,20 @@ router.post("/", async (req, res) => {
         text: `안녕하세요. 이메일 확인을 위한 인증코드를 보내드립니다. 씬-기록 인증코드는 ${code}입니다. 씬-기록 페이지로 돌아가 코드를 입력해주세요.`, // 이메일 본문
     };
     try {
-        //db저장
-        await db.query("INSERT INTO `joinEmail` (email, code) VALUES (?,?)", [
-            email,
-            code,
-        ]);
+        const [emailExist] = await db.query(
+            "select * from joinEmail where email = ?",
+            [email]
+        );
+        if (emailExist.length === 0) {
+            await db.query(
+                "INSERT INTO `joinEmail` (email, code) VALUES (?,?)",
+                [email, code]
+            );
+        } else
+            await db.query("UPDATE joinEmail SET code = ? where email = ? ", [
+                code,
+                email,
+            ]);
         // 이메일 전송
         await transporter.sendMail(mailOptions);
         console.log("이메일전송성공", code);
