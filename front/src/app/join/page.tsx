@@ -8,6 +8,8 @@ import { useState } from "react";
 import axios from "axios";
 import AgreeCheck from "@/component/AgreeCheck";
 import Email from "@/component/Email";
+import { LoginInput } from "@/component/common";
+import JoinForm from "@/component/JoinForm";
 
 // import { Link, useNavigate } from "react-router-dom";
 
@@ -15,7 +17,7 @@ export default function join() {
     const router = useRouter();
     const URL = process.env.NEXT_PUBLIC_API_KEY;
 
-    const joingo = () => {
+    const joinGo = () => {
         alert("회원가입이 완료되었습니다.");
         router.push("/");
     };
@@ -31,41 +33,7 @@ export default function join() {
                             회원가입
                         </p>
                         <div className="w-full bg-red-400 mt-10">
-                            <form>
-                                <label for="name" className="text-gray4 mt-4">
-                                    이름
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder=" 예) 김기록"
-                                    required
-                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
-                                />
-                                <Email />
-                                <p className="text-gray4 mt-4">비밀번호</p>
-                                <input
-                                    type="password"
-                                    placeholder="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
-                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
-                                />
-                                <p className="text-gray4  mt-4">
-                                    비밀번호 확인
-                                </p>
-                                <input
-                                    type="password"
-                                    placeholder="영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)"
-                                    className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
-                                />
-                            </form>
-                            <AgreeCheck />
-                            <button
-                                type="button"
-                                onClick={joingo}
-                                className="font-semibold py-3 rounded-lg bg-[#c2c2c2] h-12 text-center w-full mt-8"
-                            >
-                                가입하기
-                            </button>
+                            <JoinForm joinGo={joinGo} />
                         </div>
                     </div>
                 </main>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AgreeCheck() {
+export default function AgreeCheck({ agree, setagree }) {
     const [allcheck, setallcheck] = useState<boolean>(false);
     const [checkbox, setcheckbox] = useState<{ [key: string]: boolean }>({
         servicechk: false,
@@ -10,6 +10,7 @@ export default function AgreeCheck() {
     const allAgree = () => {
         setallcheck(!allcheck);
         setcheckbox({ servicechk: !allcheck, privacychk: !allcheck });
+        setagree(true);
     };
     //개별동의
     const singleAgree = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +19,9 @@ export default function AgreeCheck() {
         setcheckbox(newcheckbox);
         //전체동의 상태 업데이트
         setallcheck(Object.values(newcheckbox).every(Boolean));
+        if (Object.values(newcheckbox).every(Boolean)) {
+            setagree(true);
+        }
     };
     return (
         <div className="mt-8">

@@ -27,13 +27,20 @@ export default function Home() {
                                     <p>-기록</p>
                                 </div>
                             </div>
-
-                            <Link
-                                href="/login"
-                                className="bg-orange text-2xl p-4 rounded"
-                            >
-                                로그인 / 회원가입
-                            </Link>
+                            <div className="flex text-center ">
+                                <Link
+                                    href="/join"
+                                    className="block w-40 bg-[#292929] text-2xl p-4 rounded mr-2"
+                                >
+                                    회원가입
+                                </Link>
+                                <Link
+                                    href="/login"
+                                    className="block w-40 bg-orange text-2xl p-4 rounded"
+                                >
+                                    로그인
+                                </Link>
+                            </div>
                         </div>
                     </div>
                     <div className="absolute bottom-7 left-1/2 flex flex-col items-center w-[68px] animate-smallBounce">

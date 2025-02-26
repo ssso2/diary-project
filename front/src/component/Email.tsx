@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
+import { validateEmail } from "../utils/Validation";
 
 export default function Email() {
     const URL = process.env.NEXT_PUBLIC_API_KEY;
@@ -10,10 +11,6 @@ export default function Email() {
     const [codeValid, setcodeValid] = useState(false);
     const [codeInput, setcodeInput] = useState("");
     const [codeVerify, setcodeVerify] = useState(false);
-
-    const validateEmail = (email: string) => {
-        return /\S+@\S+\.\S+/.test(email);
-    };
 
     //이메일인증버튼활성화
     const emailchange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,9 +62,12 @@ export default function Email() {
     };
     return (
         <>
-            <p className="text-gray4">이메일</p>
+            <label htmlFor="email" className="text-gray4">
+                이메일
+            </label>
             <input
                 type="email"
+                id="email"
                 placeholder="예) scene@naver.com"
                 readOnly={codeVerify}
                 className="border-gray3 rounded-lg py-3 my-2 pl-5 w-full text-black"
@@ -110,7 +110,9 @@ export default function Email() {
                 </div>
             )}
             {codeVerify && (
-                <p className="text-green-600">이메일 인증이 완료되었습니다.</p>
+                <p className="text-green-600 mb-2">
+                    이메일 인증이 완료되었습니다.
+                </p>
             )}
         </>
     );
