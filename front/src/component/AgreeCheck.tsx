@@ -10,7 +10,8 @@ export default function AgreeCheck({ setagree }) {
     const allAgree = () => {
         setallcheck(!allcheck);
         setcheckbox({ servicechk: !allcheck, privacychk: !allcheck });
-        setagree(true);
+        // setagree(true);
+        setagree(!allcheck);
     };
     //개별동의
     const singleAgree = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,10 +19,9 @@ export default function AgreeCheck({ setagree }) {
         const newcheckbox = { ...checkbox, [id]: checked };
         setcheckbox(newcheckbox);
         //전체동의 상태 업데이트
-        setallcheck(Object.values(newcheckbox).every(Boolean));
-        if (Object.values(newcheckbox).every(Boolean)) {
-            setagree(true);
-        }
+        const allChecked = Object.values(newcheckbox).every(Boolean);
+        setallcheck(allChecked);
+        setagree(allChecked); // 모든 체크박스가 체크되면 true, 하나라도 해제되면 false
     };
     return (
         <div className="mt-8">

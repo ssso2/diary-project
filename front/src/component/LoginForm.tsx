@@ -7,7 +7,7 @@ export default function LoginForm({ loginGo }) {
     const [pw, setpw] = useState("");
     const [errors, seterrors] = useState({ email: "", pw: "" });
 
-    // 이메일, 패스워드 변경시 에러메세지초기화
+    // 이메일, 패스워드 유효성통과후 에러메세지초기화
     const Change = (setinput, value, key) => {
         setinput(value);
         seterrors(prev => ({ ...prev, [key]: "" }));
@@ -61,8 +61,6 @@ export default function LoginForm({ loginGo }) {
                                                ? "bg-orange cursor-pointer"
                                                : "bg-gray3"
                                        }
-                                              
-                                             
                                         `}
             >
                 로그인

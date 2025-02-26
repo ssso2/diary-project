@@ -5,13 +5,11 @@ import { LoginInput } from "./common";
 
 export default function Email({ email, setemail, codeVerify, setcodeVerify }) {
     const URL = process.env.NEXT_PUBLIC_API_KEY;
-    // const [email, setemail] = useState("");
     const [emailValid, setemailValid] = useState(false);
     const [code, setcode] = useState("");
     const [codesend, setcodesend] = useState(false);
     const [codeValid, setcodeValid] = useState(false);
     const [codeInput, setcodeInput] = useState("");
-    // const [codeVerify, setcodeVerify] = useState(false);
 
     //이메일인증버튼활성화
     const emailchange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,7 +30,7 @@ export default function Email({ email, setemail, codeVerify, setcodeVerify }) {
             alert(`이메일로 인증코드를 보냈습니다. ${res.data.code}`);
         } catch (error) {
             console.log("이메일인증실패", error);
-            alert(error.response.message);
+            alert(error.response.data.message);
         }
     };
     console.log("코드입력", codeInput);

@@ -17,9 +17,16 @@ export default function join() {
     const router = useRouter();
     const URL = process.env.NEXT_PUBLIC_API_KEY;
 
-    const joinGo = () => {
-        alert("회원가입이 완료되었습니다.");
-        router.push("/");
+    const joinGo = async (email, pw, name) => {
+        try {
+            const newuser = await axios.post(`${URL}/join/member`, {
+                email,
+                pw,
+                name,
+            });
+            alert(newuser.data);
+            router.push("/");
+        } catch (error) {}
     };
     return (
         <div>

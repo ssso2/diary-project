@@ -17,7 +17,6 @@ export default function JoinForm({ joinGo }) {
     const [agree, setagree] = useState(false);
     const [errors, seterrors] = useState({
         name: "",
-        // email: "",
         pw: "",
         pwchk: "",
     });
@@ -28,7 +27,7 @@ export default function JoinForm({ joinGo }) {
         seterrors(prev => ({ ...prev, [key]: "" }));
     };
 
-    // 로그인버튼으로 유효성 검사
+    // 회원가입버튼으로 유효성 검사
     const joinchk = async e => {
         e.preventDefault();
         console.log(name, pw, pwchk);
@@ -59,7 +58,7 @@ export default function JoinForm({ joinGo }) {
             alert("이용약관에 모두 동의해야 가입 가능합니다.");
             return;
         }
-        joinGo(name, pw);
+        joinGo(email, pw, name);
     };
     return (
         <form onSubmit={joinchk}>
@@ -99,7 +98,7 @@ export default function JoinForm({ joinGo }) {
             <AgreeCheck setagree={setagree} />
             <button
                 type="submit"
-                disabled={!(name && pw && pwchk)}
+                disabled={!(name && email && pw && pwchk)}
                 className={`font-semibold py-3 rounded-lg  h-12 text-center w-full mt-8 
                 ${
                     name && email && pw && pwchk

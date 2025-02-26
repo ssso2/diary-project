@@ -25,6 +25,18 @@ router.post("/", async (req, res) => {
         text: `안녕하세요. 이메일 확인을 위한 인증코드를 보내드립니다. 씬-기록 인증코드는 ${code}입니다. 씬-기록 페이지로 돌아가 코드를 입력해주세요.`, // 이메일 본문
     };
     try {
+        const [userExist] = await db.query(
+            "select * from member where user_id = ?",
+            [email]
+        );
+
+        if (userExist.length > 0) {
+            console.error("이메일 중복");
+            return res
+                .status(401)
+                .json({ message: "이미 가입된 이메일입니다." });
+        }
+
         const [emailExist] = await db.query(
             "select * from joinEmail where email = ?",
             [email]
@@ -43,8 +55,6 @@ router.post("/", async (req, res) => {
         await transporter.sendMail(mailOptions);
         console.log("이메일전송성공", code);
         return res.status(200).json({
-            // message: "인증번호가 발송되었습니다.",
-            // email: email,
             code: code,
         });
     } catch (error) {
@@ -89,4 +99,20 @@ router.post("/codecheck", async (req, res) => {
         });
     }
 });
+
+router.post("/member", async (req, res) => {
+    const { email, pw, name } = req.body;
+    console.log("회원가입디비접근", email, pw, name);
+    try {
+        console.log("회원가입트라이접근", email, pw, name);
+        await db.query(
+            "insert into member (user_id, pw, name) values (?,?,?)",
+            [email, pw, name]
+        );
+        res.status(200).json("회원가입이 완료되었습니다.");
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
 module.exports = router;
