@@ -1,16 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 import { validateEmail } from "../utils/Validation";
+import { LoginInput } from "./common";
 
-export default function Email() {
+export default function Email({ email, setemail, codeVerify, setcodeVerify }) {
     const URL = process.env.NEXT_PUBLIC_API_KEY;
-    const [email, setemail] = useState("");
+    // const [email, setemail] = useState("");
     const [emailValid, setemailValid] = useState(false);
     const [code, setcode] = useState("");
     const [codesend, setcodesend] = useState(false);
     const [codeValid, setcodeValid] = useState(false);
     const [codeInput, setcodeInput] = useState("");
-    const [codeVerify, setcodeVerify] = useState(false);
+    // const [codeVerify, setcodeVerify] = useState(false);
 
     //이메일인증버튼활성화
     const emailchange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,22 +63,20 @@ export default function Email() {
     };
     return (
         <>
-            <label htmlFor="email" className="text-gray4">
-                이메일
-            </label>
-            <input
-                type="email"
+            <LoginInput
+                name="이메일"
                 id="email"
+                type="email"
+                value={email}
                 placeholder="예) scene@naver.com"
+                onchange={emailchange}
                 readOnly={codeVerify}
-                className="border-gray3 rounded-lg py-3 my-2 pl-5 w-full text-black"
-                onChange={emailchange}
             />
             <button
                 type="button"
                 disabled={!emailValid}
                 onClick={requestcode}
-                className={`text-white bg-gray3 rounded-lg py-3 w-full font-semibold ${
+                className={`text-white bg-gray3 rounded-lg mt-2 py-3 w-full font-semibold ${
                     emailValid ? "bg-orange cursor-pointer" : "bg-gray3 "
                 } ${codeVerify && "hidden"}`}
             >

@@ -11,6 +11,7 @@ import AgreeCheck from "./AgreeCheck";
 export default function JoinForm({ joinGo }) {
     const [name, setname] = useState("");
     const [email, setemail] = useState("");
+    const [codeVerify, setcodeVerify] = useState(false);
     const [pw, setpw] = useState("");
     const [pwchk, setpwchk] = useState("");
     const [agree, setagree] = useState(false);
@@ -32,15 +33,19 @@ export default function JoinForm({ joinGo }) {
         e.preventDefault();
         console.log(name, pw, pwchk);
         let errormessage = {};
+        if (!codeVerify) {
+            alert("이메일 인증이 필요합니다.");
+            return;
+        }
         if (!validateName(name)) {
             errormessage.name = "이름을 정확히 입력해주세요.";
         }
-        // if (!validateEmail(email)) {
-        //     errormessage.email = "이메일 주소를 정확히 입력해주세요.";
-        // }
         if (!validatePassword(pw)) {
             errormessage.pw =
                 "영문, 숫자, 특수문자를 조합해서 입력해주세요. (8-16자)";
+        }
+        if (pw !== pwchk) {
+            errormessage.pwchk = "비밀번호가 일치하지않습니다.";
         }
         if (pw !== pwchk) {
             errormessage.pwchk = "비밀번호가 일치하지않습니다.";
@@ -49,6 +54,7 @@ export default function JoinForm({ joinGo }) {
             seterrors(errormessage);
             return;
         }
+
         if (!agree) {
             alert("이용약관에 모두 동의해야 가입 가능합니다.");
             return;
@@ -66,7 +72,12 @@ export default function JoinForm({ joinGo }) {
                 onchange={e => Change(setname, e.target.value, "name")}
             />
             <ErrorMessage message={errors.name} />
-            <Email />
+            <Email
+                email={email}
+                setemail={setemail}
+                codeVerify={codeVerify}
+                setcodeVerify={setcodeVerify}
+            />
             <LoginInput
                 name="비밀번호"
                 id="pw"
@@ -85,12 +96,16 @@ export default function JoinForm({ joinGo }) {
                 onchange={e => Change(setpwchk, e.target.value, "pwchk")}
             />
             <ErrorMessage message={errors.pwchk} />
-            <AgreeCheck agree={agree} setagree={setagree} />
+            <AgreeCheck setagree={setagree} />
             <button
                 type="submit"
                 disabled={!(name && pw && pwchk)}
                 className={`font-semibold py-3 rounded-lg  h-12 text-center w-full mt-8 
-                ${name && pw && pwchk ? "bg-orange cursor-pointer" : "bg-gray3"}
+                ${
+                    name && email && pw && pwchk
+                        ? "bg-orange cursor-pointer"
+                        : "bg-gray3"
+                }
                        
                       
                  `}

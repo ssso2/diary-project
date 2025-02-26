@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AgreeCheck({ agree, setagree }) {
+export default function AgreeCheck({ setagree }) {
     const [allcheck, setallcheck] = useState<boolean>(false);
     const [checkbox, setcheckbox] = useState<{ [key: string]: boolean }>({
         servicechk: false,

@@ -1,4 +1,12 @@
-export function LoginInput({ name, id, type, value, placeholder, onchange }) {
+export function LoginInput({
+    name,
+    id,
+    type,
+    value,
+    placeholder,
+    onchange,
+    readOnly,
+}) {
     return (
         <div className="mt-4">
             <label htmlFor={id} className="text-gray4">
@@ -13,6 +21,7 @@ export function LoginInput({ name, id, type, value, placeholder, onchange }) {
                 onChange={onchange}
                 className="border-[#c4c4c4] rounded-lg py-3 pl-5 w-full text-black"
                 required
+                readOnly={readOnly}
             />
         </div>
     );
